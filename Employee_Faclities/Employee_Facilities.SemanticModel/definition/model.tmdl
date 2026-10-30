@@ -1,0 +1,23 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Employees","Facilities","FacilityUsage","FacilityUsage_AllRows","_Measures"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Employees
+ref table Facilities
+ref table FacilityUsage
+ref table Calendar
+ref table _Measures
+
+ref cultureInfo en-IN
+

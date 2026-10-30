@@ -1,0 +1,118 @@
+table Employees
+	lineageTag: 6782d8f5-1579-4ddf-ae8d-2dc8efbe9448
+
+	column EmployeeID
+		dataType: string
+		lineageTag: b71026b0-be9e-43f8-ace6-cd84565de694
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeName
+		dataType: string
+		lineageTag: b7f795b7-1061-41ce-939f-64426bac6bd8
+		summarizeBy: none
+		sourceColumn: EmployeeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: c736ff1f-38d2-456c-8a3c-074b6cb5afef
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobRole
+		dataType: string
+		lineageTag: ffb22d7c-91d0-4895-afee-5028b3f2ad15
+		summarizeBy: none
+		sourceColumn: JobRole
+
+		annotation SummarizationSetBy = Automatic
+
+	column OfficeLocation
+		dataType: string
+		lineageTag: f228f6ed-5104-4e4f-8dfb-486fb8445642
+		summarizeBy: none
+		sourceColumn: OfficeLocation
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmploymentType
+		dataType: string
+		lineageTag: 69b029b9-8c20-42d8-89c4-d604a8577191
+		summarizeBy: none
+		sourceColumn: EmploymentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeStatus
+		dataType: string
+		lineageTag: 53a9698b-1df1-4b0b-beba-119dc7779920
+		summarizeBy: none
+		sourceColumn: EmployeeStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column JoiningDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0657439a-b0c2-4c32-b184-d2e0a0bac0bf
+		summarizeBy: none
+		sourceColumn: JoiningDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Employees = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Janaki.Pal\Downloads\Employees.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EmployeeID", type text}, {"EmployeeName", type text}, {"Department", type text}, {"JobRole", type text}, {"OfficeLocation", type text}, {"EmploymentType", type text}, {"JoiningDate", type date}, {"EmployeeStatus", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(Table.TransformColumnTypes(#"Changed Type", {{"JoiningDate", type text}}, "en-IN"),{{"EmployeeID", Text.Trim, type text}, {"EmployeeName", Text.Trim, type text}, {"Department", Text.Trim, type text}, {"JobRole", Text.Trim, type text}, {"OfficeLocation", Text.Trim, type text}, {"EmploymentType", Text.Trim, type text}, {"JoiningDate", Text.Trim, type text}, {"EmployeeStatus", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"EmployeeID", Text.Clean, type text}, {"EmployeeName", Text.Clean, type text}, {"Department", Text.Clean, type text}, {"JobRole", Text.Clean, type text}, {"OfficeLocation", Text.Clean, type text}, {"EmploymentType", Text.Clean, type text}, {"JoiningDate", Text.Clean, type text}, {"EmployeeStatus", Text.Clean, type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Cleaned Text","  "," ",Replacer.ReplaceText,{"EmployeeID", "EmployeeName", "Department", "JobRole", "OfficeLocation", "EmploymentType", "JoiningDate", "EmployeeStatus"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","   "," ",Replacer.ReplaceText,{"EmployeeID", "EmployeeName", "Department", "JobRole", "OfficeLocation", "EmploymentType", "JoiningDate", "EmployeeStatus"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","I.T.","IT",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","it","IT",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","Information Technology","IT",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","HR","Human Resources",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","human resources","Human Resources",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","Cust. Support","Customer Support",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7","Customer support","Customer Support",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value8","sales","Sales",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9","marketing","Marketing",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value11" = Table.ReplaceValue(#"Replaced Value10","finance","Finance",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value12" = Table.ReplaceValue(#"Replaced Value11","administration","Administration",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value13" = Table.ReplaceValue(#"Replaced Value12","Admin","Administration",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value14" = Table.ReplaceValue(#"Replaced Value13","Administrationistration","Administration",Replacer.ReplaceText,{"Department"}),
+				    #"Replaced Value15" = Table.ReplaceValue(#"Replaced Value14","Purchasing","Procurement",Replacer.ReplaceText,{"Department"}),
+				    #"Capitalized Each Word" = Table.TransformColumns(#"Replaced Value15",{{"OfficeLocation", Text.Proper, type text}}),
+				    #"Replaced Value16" = Table.ReplaceValue(#"Capitalized Each Word","New Delhi","Delhi",Replacer.ReplaceText,{"OfficeLocation"}),
+				    #"Replaced Value17" = Table.ReplaceValue(#"Replaced Value16","Gurgaon","Gurugram",Replacer.ReplaceText,{"OfficeLocation"}),
+				    #"Replaced Value18" = Table.ReplaceValue(#"Replaced Value17","Bangalore","Bengaluru",Replacer.ReplaceText,{"OfficeLocation"}),
+				    #"Replaced Value19" = Table.ReplaceValue(#"Replaced Value18","","Unknown",Replacer.ReplaceValue,{"OfficeLocation"}),
+				    #"Capitalized Each Word1" = Table.TransformColumns(#"Replaced Value19",{{"EmploymentType", Text.Proper, type text}}),
+				    #"Replaced Value20" = Table.ReplaceValue(#"Capitalized Each Word1","Full Time","Full-Time",Replacer.ReplaceText,{"EmploymentType"}),
+				    #"Replaced Value21" = Table.ReplaceValue(#"Replaced Value20","Permanent","Full-Time",Replacer.ReplaceText,{"EmploymentType"}),
+				    #"Replaced Value22" = Table.ReplaceValue(#"Replaced Value21","Part Time","Part-Time",Replacer.ReplaceText,{"EmploymentType"}),
+				    #"Capitalized Each Word2" = Table.TransformColumns(#"Replaced Value22",{{"EmployeeStatus", Text.Proper, type text}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Capitalized Each Word2",{{"JoiningDate", type date}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type1", "JoiningDate_Clean", each if [JoiningDate] < #date(2000, 1, 1) then null else if [JoiningDate] > #date(2026, 12, 31) then null else [JoiningDate]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Conditional Column",{"JoiningDate"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Removed Columns",{{"JoiningDate_Clean", type date}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type2",{{"JoiningDate_Clean", "JoiningDate"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns", {"EmployeeID"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

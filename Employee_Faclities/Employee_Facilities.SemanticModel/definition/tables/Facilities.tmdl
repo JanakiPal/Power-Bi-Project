@@ -1,0 +1,91 @@
+table Facilities
+	lineageTag: cb8a7c69-0ad3-4f06-820b-9572f0551fef
+
+	column FacilityID
+		dataType: string
+		lineageTag: 6e2b47fe-b050-45a0-9f91-196f89ee9665
+		summarizeBy: none
+		sourceColumn: FacilityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FacilityName
+		dataType: string
+		lineageTag: fbb03a54-c8d9-4020-9b74-c97cd825c5b2
+		summarizeBy: none
+		sourceColumn: FacilityName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: ae8b98c6-4405-4e1c-810f-08449b577338
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider
+		dataType: string
+		lineageTag: 5ec3dbc0-3302-4bf7-bff4-6d135ccb6995
+		summarizeBy: none
+		sourceColumn: Provider
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthlyOperatingCost
+		dataType: double
+		lineageTag: d2e180ac-054b-465c-981e-060d4755ee05
+		summarizeBy: none
+		sourceColumn: MonthlyOperatingCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MonthlyBudget
+		dataType: double
+		lineageTag: c28e5220-8235-4e6c-86d1-9dd4d46eff2e
+		summarizeBy: none
+		sourceColumn: MonthlyBudget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FacilityStatus
+		dataType: string
+		lineageTag: f333204f-a5b8-4646-8b92-abf5e0c3d232
+		summarizeBy: none
+		sourceColumn: FacilityStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Facilities = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Janaki.Pal\Downloads\Facilities.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"FacilityID", type text}, {"FacilityName", type text}, {"Category", type text}, {"Provider", type text}, {"MonthlyOperatingCost", type number}, {"MonthlyBudget", type text}, {"FacilityStatus", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(Table.TransformColumnTypes(#"Changed Type", {{"MonthlyOperatingCost", type text}}, "en-IN"),{{"FacilityID", Text.Trim, type text}, {"FacilityName", Text.Trim, type text}, {"Category", Text.Trim, type text}, {"Provider", Text.Trim, type text}, {"MonthlyOperatingCost", Text.Trim, type text}, {"MonthlyBudget", Text.Trim, type text}, {"FacilityStatus", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"FacilityID", Text.Clean, type text}, {"FacilityName", Text.Clean, type text}, {"Category", Text.Clean, type text}, {"Provider", Text.Clean, type text}, {"MonthlyOperatingCost", Text.Clean, type text}, {"MonthlyBudget", Text.Clean, type text}, {"FacilityStatus", Text.Clean, type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Cleaned Text","  "," ",Replacer.ReplaceText,{"FacilityID", "FacilityName", "Category", "Provider", "MonthlyOperatingCost", "MonthlyBudget", "FacilityStatus"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","   "," ",Replacer.ReplaceText,{"FacilityID", "FacilityName", "Category", "Provider", "MonthlyOperatingCost", "MonthlyBudget", "FacilityStatus"}),
+				    #"Capitalized Each Word" = Table.TransformColumns(#"Replaced Value1",{{"Category", Text.Proper, type text}}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Capitalized Each Word","And","&",Replacer.ReplaceText,{"Category"}),
+				    #"Capitalized Each Word1" = Table.TransformColumns(#"Replaced Value2",{{"Provider", Text.Proper, type text}}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Capitalized Each Word1",".","",Replacer.ReplaceText,{"Provider"}),
+				    #"Capitalized Each Word2" = Table.TransformColumns(#"Replaced Value3",{{"FacilityStatus", Text.Proper, type text}}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Capitalized Each Word2","Rs ","",Replacer.ReplaceText,{"MonthlyOperatingCost", "MonthlyBudget"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4",",","",Replacer.ReplaceText,{"MonthlyOperatingCost", "MonthlyBudget"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value5",{{"MonthlyBudget", type number}, {"MonthlyOperatingCost", type number}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Changed Type1", {"FacilityID"}),
+				    #"Calculated Absolute Value" = Table.TransformColumns(#"Removed Duplicates",{{"MonthlyOperatingCost", Number.Abs, type number}})
+				in
+				    #"Calculated Absolute Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

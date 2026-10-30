@@ -1,0 +1,9 @@
+FacilityID,FacilityName,Category,Provider,MonthlyOperatingCost,MonthlyBudget,FacilityStatus
+F001,Employee Transport,Transport,MetroCab Mobility Pvt Ltd,380000,485000,Active
+F002,Cafeteria,Food and Beverage,Annapurna Food Services Pvt Ltd,650000,670000,Active
+F003,Employee Parking,Parking,ParkEase Solutions Pvt. Ltd.,"₹1,80,000",210000,active
+F004,Gym & Fitness Center,Fitness,FitLife Wellness Pvt Ltd,-140000,180000,Active
+F005,Medical Center,Medical,Apex HealthCare Services ,210000,"Rs 2,20,000",Active
+F006,Arcade Room,Recreation,Playzone Entertainment LLP,45000,,Active
+F007,Swimming Pool,Fitness,Fitlife Wellness Pvt. Ltd.,,100000,Inactive
+F002,Cafeteria,food & beverage,ANNAPURNA FOOD SERVICES PVT. LTD.,650000,670000,active

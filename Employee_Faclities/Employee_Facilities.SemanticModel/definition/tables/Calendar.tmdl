@@ -1,0 +1,82 @@
+table Calendar
+	lineageTag: 68c90563-d6d6-4fd7-9f85-8494e398b846
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 126bf596-730a-449c-9688-6e07f3d48127
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 391af2eb-c207-4f49-988d-854407e98024
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 9674fff9-ae6a-4598-966c-dd68a9205c30
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: f5cac423-57f4-40b0-9797-a82338b6a9d7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year'
+		lineageTag: b1560913-180d-4c3b-8de0-b77bf68f8b8f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Year]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Month Start'
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 24a13570-f900-4e81-b9aa-327552e8e5d9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Is Month Start]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source =
+				
+				
+				ADDCOLUMNS(
+				
+				    CALENDAR(DATE(2026,1,1), DATE(2026,12,31)),
+				
+				    "Year", YEAR([Date]),
+				
+				    "Month Number", MONTH([Date]),
+				
+				    "Month Name", FORMAT([Date], "MMM"),
+				
+				    "Month Year", FORMAT([Date], "MMM yyyy"),
+				
+				    "Is Month Start", DAY([Date]) = 1
+				
+				)
+
+	annotation PBI_Id = a7686c26f7314b3baeac147d234857fa
+

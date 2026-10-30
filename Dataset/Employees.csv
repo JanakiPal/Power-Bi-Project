@@ -1,0 +1,153 @@
+EmployeeID,EmployeeName,Department,JobRole,OfficeLocation,EmploymentType,JoiningDate,EmployeeStatus
+E001,Kritika Rathore,it,Software Engineer,Hyderabad,Full-Time,2019-10-02,Active
+E002,Rakesh Kumar,IT,DevOps Engineer,Bangalore,Full-Time,2021-12-11,Active
+E003,Naveen Banerjee,IT,DevOps Engineer,Pune,Full-Time,2020-10-28,Active
+E004,Aparna Chatterjee,Marketing,Marketing Executive,Bengaluru,Full-Time,2022-07-14,Active 
+E005,Vivaan Sethi,Customer Support,Senior Support Executive,Noida,Full-Time,2025-03-03,Active
+E006,Mansi Sharma,Sales,Senior Sales Executive,Mumbai,contract,2021-01-21,Inactive
+E007,Rohan Das,IT,IT Support Analyst,Chennai,Full-Time,2024-12-24,Active
+E008,Bhavna Iyer,Operations,Operations Executive,Gurgaon,Full-Time,2022-10-25,Active
+E009,Akash Iyer,Finance,Senior Accountant,Noida,Full-Time,2021-09-03,ACTIVE
+E010,Lokesh Naidu,IT,Business Analyst,Pune,Full-Time,2017-04-16,Active
+E011,Varun Srivastava,Customer Support,Technical Support Associate,Noida,Full-Time,2018-01-09,Active
+E012,Suresh Kapoor,Human Resources,Payroll Coordinator,Gurugram,Full-Time,2025-04-20,Active
+E013,Shalini Bhatt,IT,IT Support Analyst,Chennai,Full-Time,2016-03-25,Active
+E014,Mahesh Shetty,Operations,Logistics Coordinator,Pune,Full-Time,2025-07-01,inactive
+E015,Rakesh Rao,Sales,Sales Intern,Mumbai,Intern ,2026-08-14,Active
+E016,Naveen Mehta,IT,IT Intern,Bengaluru,Intern,2026-01-30,active
+E017,Swati Ahuja,Procurement,Vendor Manager,Gurugram,Full-Time,2022-08-23,Active
+E018,Nisha Deshmukh,Customer Support,Customer Support Executive,Chennai,Full-Time,2020-08-04,Active
+E019,Sanjay Desai,Legal,Legal Associate,Hyderabad,Full-Time,2025-11-15,Active
+E020,Nidhi Sharma,Administration,Admin Executive,Bengaluru,Contract,2022-11-08,Active
+E021,Swati Shetty,Sales,Sales Coordinator,Pune,Full-Time,2021-12-24,Active
+E022,Komal Kohli,Sales,Key Account Manager,Mumbai,Full-Time,2017-06-19,active
+E023,Manish Venkatesh,Operations,Process Associate,Bengaluru,Full-Time,2022-02-01,Active
+E024,Rahul Nair,Customer Support,Customer Success Associate,Bengaluru,Contract,2025-05-11,Inactive
+E025,Preeti Khanna,IT,Senior Software Engineer,Bengaluru,Full-Time,2023-09-30,Active
+E026,Rakesh Jain,Customer Support,Senior Support Executive,Hyderabad,Full-Time,2025-10-27,Active
+E027,Anil Thakur,Finance,Finance Manager,Delhi,Full-Time,2021-08-11,Active
+E028,Simran Kumar,Sales,Sales Executive,Delhi,Full Time,2025-12-23,Active
+E029,Vijay Desai,IT,Senior Software Engineer,Bengaluru,Full-Time,2024-06-08,Active
+E030,Chetan Chauhan,Customer Support,Support Manager,Chennai,Contract,2026-02-02,Active 
+E031,Nisha Verma,Operations,Quality Analyst,Gurugram,full-time,2025-09-19,Active
+E032,Yash Mukherjee,IT,IT Intern,Gurugram,Intern,2026-02-11,Active
+E033,Pranav Sandhu,Sales,Key Account Manager,Gurugram,Full Time,2023-12-28,Active
+E034,Jatin Mehta,Administration,Administrative Assistant,Gurugram,Full-Time,2017-01-30,Active
+E035,Shalini Chopra,IT,QA Engineer,Noida,Contract,2023-09-01,Active
+E036,Ananya Chatterjee,Human Resources,HR Manager,Hyderabad,Full-Time,2018-03-04,Active
+E037,Aishwarya Das,Marketing,Graphic Designer,Mumbai,Full-Time,2025-10-02,Active
+E038,Pallavi Kohli,Procurement,Procurement Manager,Hyderabad,Full-Time,2020-05-09,Active
+E039,Vijay Khanna,Operations,Operations Intern,Bengaluru,Intern,2025-10-24,Active
+E040,Swathi Sethi,Customer Support,Support Manager,Chennai,Full-Time,2019-02-11,Active
+E041,Mahesh Srivastava,Sales,Key Account Manager,Mumbai,Full-Time,2025-09-24,Inactive
+E042,Hemant Das,Operations,Quality Analyst,Chennai,Part-Time,2025-07-05,Active
+E043,Yash Kapoor,Sales,Sales Executive,Gurugram,Full-Time,2023-05-17,Active
+E044,Jatin Menon,Operations,Quality Analyst,Delhi,Full-Time,2022-07-16,Active
+E045,Meera Rathore,Finance,Accountant,Mumbai,Full-Time,2018-03-29,Active
+E046,Nidhi Kumar,Human Resources,Payroll Coordinator,Gurgaon,Full-Time,2022-04-23,Inactive
+E047,Ankit Singh,Operations,Operations Manager,Pune,Part-Time,2019-04-27,Active
+E048,Vikram Sinha,IT,IT Support Analyst,Pune,Full-Time,2016-09-09,Active
+E049,Tarun Jain,HR,Talent Acquisition Specialist,Bengaluru,Full-Time,2020-09-26,Active
+E050,Manpreet Chopra,Operations,Operations Manager,Mumbai,Part-Time,2026-11-10,Active
+E051,Lokesh Deshmukh,Administration,Administrative Assistant,Pune,Full-Time,2017-04-21,active
+E052,Prakash Bansal,sales,Sales Coordinator,Gurugram,Full-Time,2018-05-18,Active
+E053,Jatin Khanna,Administration,Front Desk Executive,Gurugram,Full-Time,2017-04-17,Active
+E054,Harini Sharma,Procurement,Sourcing Specialist,Bengaluru,Full-Time,2022-02-22,Active
+E055,Anil Kulkarni,Sales,Key Account Manager,Chennai,Contract,2023-10-16,Active
+E056,Pooja Hegde,Customer Support,Support Manager,Gurugram,Full-Time,2025-07-05,Active
+E057,Bhavna Khan,human resources,Learning & Development Executive,Bengaluru,Full-Time,2019-10-04,Active
+E058,Aditya Chauhan,Operations,Shift Supervisor,Bengaluru,Full-Time,2020-01-30,Active
+E059,Jyoti Ahuja,IT,DevOps Engineer,Bengaluru,Full-Time,2021-07-25,Active
+E060,Ayesha Saxena,marketing,Brand Manager,Gurugram,Full-Time,2020-01-03,Active
+E061,Mansi Dhawan,IT,Business Analyst,Pune,Full-Time,2016-07-08,Active
+E062,Neha Gill,Procurement,Vendor Manager,Chennai,contract,2022-06-15,Active
+E063,Arjun Patel,HR,HR Executive,Delhi,Full-Time,2016-07-12,Active
+E064,Ishaan Subramanian,Marketing,Digital Marketing Specialist,Hyderabad,Full Time,2025-09-08,Active
+E065,Kunal Bansal,Marketing,Content Writer,Bengaluru,Part Time,2022-09-15,Active
+E066,Vijay Pandey,Finance,Payroll Specialist,Noida,Part-Time,2017-01-25,Active
+E067,Akash Chatterjee,Customer Support,Support Manager,,Full-Time,2016-11-17,Active
+E068,Srinivas Das,Customer support,Technical Support Associate,Gurugram,Contract,2016-02-15,Active
+E069,Mohit Kohli,Sales,Senior Sales Executive,Hyderabad,Contract,2018-07-02,Active
+E070,Suresh Thakur ,Finance,Payroll Specialist,Mumbai,Full-Time,2020-09-21,Active
+E071,Sunita Chaudhary,Marketing,Marketing Analyst,Pune,Full-Time,2022-03-18,Active
+E072,Sandeep Thakur,Operations,Shift Supervisor,Bengaluru,Full-Time,2025-08-08,Active
+E073,Siddharth Ansari,Finance,Accountant,Mumbai,Full-Time,2021-04-20,Active
+E039,Vijay Khanna,Operations,Operations Intern,Bengaluru,Intern,2025-10-24,Active
+E074,Nikhil Kulkarni,Admin,Administrative Assistant,Pune,Full-Time,2025-04-30,Active
+E075,Anil Sethi,Operations,Shift Supervisor,Bengaluru,Full-Time,2017-10-23,Active
+E076,Aditya Srivastava,Operations,Shift Supervisor,Bengaluru,Full-Time,2017-09-21,on leave
+E077,Aishwarya Banerjee,Finance,Accounts Payable Executive,Hyderabad,Full-Time,2020-05-18,Active
+E078,Aishwarya Reddy,Human Resources,Human Resources Intern,Delhi,Intern,2025-09-23,Active
+E079,Hemant Kulkarni,IT,Technical Lead,Chennai,Full-Time,2025-06-27,Active
+E080,Mahesh  Dhawan,IT,Software Engineer,Hyderabad,Full-Time,2025-07-26,Active
+E081,Ishaan Ahuja,Marketing,Content Writer,Bangalore,Part-Time,2026-02-01,Active
+E082,Meera Deshmukh ,Sales,Business Development Executive,Mumbai,Full-Time,2025-03-02,Inactive
+E083,Isha Thakur,Sales,Business Development Executive,Pune,Full-Time,2026-04-22,Active
+E084,Komal Dhawan,Finance ,Senior Accountant,Bengaluru,Full-Time,2025-07-02,Inactive
+E085,Rakesh Sethi,IT,Project Manager,Gurugram,Full-Time,2018-08-21,Active
+E086,Srinivas Khan  ,Finance,Accountant,Noida,Full-Time,2021-11-11,Active
+E087,Aparna Banerjee,Marketing,Brand Manager,Chennai,Contract,2024-10-27,Active
+E088,Meera Singh,Information Technology,IT Support Analyst,Mumbai,Full-Time,2023-02-03,Active
+E089, Neha Patil,Customer Support,Technical Support Associate,Gurugram,Contract,2023-04-24,Inactive
+E090,Ishaan Sethi,Finance,Financial Analyst,Chennai,Full-Time,15/07/2021,Active
+E091,Swati Singh,Administration,Front Desk Executive,Gurugram,Full Time,2026-06-12,Active
+E092,Poonam Joshi,Operations,Shift Supervisor,,Full-Time,2020-03-17,Active
+E093,Prakash Banerjee,Legal,Compliance Officer,Gurugram,Full-Time,2025-02-25,Active
+E094,Piyush Gupta,Sales,Sales Coordinator,Pune,Full-Time,2026-08-28,Inactive
+E095,Ramesh Agarwal,Operations,Shift Supervisor,Bengaluru,Full-Time,2023-10-27,Active
+E096,Rakesh Krishnan,Customer Support,Team Leader - Support,Noida,Full-Time,2024-08-17,Active
+E097,Kunal Gupta,Human Resources,HR Executive,Chennai,Full-Time,2020-08-07,Active
+E098,Pallavi Shah,IT,IT Support Analyst,Bengaluru,Full-Time,2024-09-11,inactive
+E099,Hemant Gupta,IT,Senior Software Engineer,Pune,Full-Time,2017-07-08,Active
+E100,Rohan Bansal,Customer Support,Senior Support Executive,Hyderabad,Contract,2020-09-25,Active
+E101,Vikram Tiwari,IT,QA Engineer,Chennai,Full-Time,2023-01-26,Active
+E102,Sunita Jain,Administration,Office Manager,Pune,Full-Time,2025-06-19,Active
+E103,Meera Mukherjee,Operations,Operations Manager,Bangalore,Full-Time,2018-03-27,Active
+E104,Arjun Srivastava,Human Resources,Payroll Coordinator,Hyderabad,Full-Time,2020-12-25,Active
+E105,Ishaan Naidu,Operations,Shift Supervisor,Gurugram,Full-Time,2025-03-14,Active
+E106,Shreya Kohli,Procurement,Procurement Intern,New Delhi,Intern,2025-10-07,Active
+E107,Varun Pandey,Finance,Accounts Payable Executive,Bengaluru,Permanent,2016-08-28,Active
+E108,Rakesh Ghosh,Legal,Legal Counsel,Noida,Full-Time,2019-10-30,Active
+E109,Vikram Sethi,Finance,Accountant,Chennai,Full-Time,2026-06-18,Active
+E110,Rohan Khanna,Customer Support,Support Manager,,Full-Time,2019-12-01,Active
+E111,Swati Saxena,Purchasing,Procurement Executive,Noida,Full-Time,2024-03-19,On Leave
+E112,Vijay Singh,Operations,Process Associate,Noida,Full-Time,2025-01-06,Active
+E113,Shreya Tiwari,Sales,Sales Coordinator,Gurugram,Full Time,2019-09-05,Active
+E114,Rahul Kulkarni,Sales,Senior Sales Executive,Mumbai,Full-Time,2021-01-14,Active
+E115, Jyoti Bhatia,Sales,Sales Coordinator,Hyderabad,Full-Time,2017-09-18,Active
+E116,Chetan Dhawan,IT,QA Engineer,Mumbai,Full-Time,2025-02-22,Active
+E117,Priya Bhatt,Customer Support,Customer Support Intern, ,Intern,2026-02-27,Active
+E118,Chetan Das,Operations ,Logistics Coordinator,Chennai,Full-Time,2025-07-30,Inactive
+E119,Sunita Gupta,Marketing,Marketing Analyst,Gurugram,full-time,2019-08-19,Inactive
+E120,Ananya Naidu,Operations,Shift Supervisor,Noida,Full-Time,2023-02-13,active
+E121,Sakshi Kulkarni,Procurement,Vendor Manager,Chennai,Full-Time,2023-12-04,On leave
+E122,Suresh Rao,Cust. Support,Customer Success Associate,Bengaluru,Full-Time,2025-07-21,Active
+E123,Divya Sinha,Finance,Internal Auditor,Chennai,FULL-TIME,2019-11-12,Active
+E124,Rajesh Tiwari,Operations,Operations Executive,Bengaluru,full-time,2025-01-16,Active
+E125,Komal Thakur,IT,Business Analyst,Bengaluru,Full-Time,2021-06-14,Active
+E126,Devendra Bansal,Customer Support,Senior Support Executive,,Contract,2026-05-14,Active
+E127,Rakesh Bhatia,Information Technology,Senior Software Engineer,Pune,Full-Time,2020-06-30,Active
+E128,Mahesh Gupta,I.T.,IT Intern,Pune,Intern,2026-01-09,Inactive
+E129,Pooja Nair,Customer Support,Customer Success Associate,Noida,Contract,2020-12-07,On leave
+E130,Sunita Das,IT,IT Intern,Noida,Intern,2025-07-20,Active
+E131,Jatin Ghosh,Sales,Sales Executive,Mumbai,Full-Time,2022-02-03,Active
+E132,Srinivas Srivastava,Sales,Business Development Executive,Gurugram,Full-Time,2021-05-16,Active
+E133,Sandeep Patel,IT,Senior Software Engineer,Pune,Full-Time,2017-08-24,Active
+E134,Yash Bhatia,Sales,Business Development Executive,Gurugram,Full-Time,2020-06-24,Active
+E135,Jyoti Khan,finance,Payroll Specialist,Delhi,Full-Time,2025-04-16,Active
+E136,Ishaan Mishra,IT,Data Analyst,Bengaluru,Contract,2026-04-02,Active
+E137, Kritika Ghosh ,Legal,Legal Counsel,Mumbai,Full-Time,2025-10-28,Active
+E138,Akash Mukherjee,IT,IT Support Analyst,Bengaluru,Full-Time,2017-02-01,Active
+E139,Kritika Subramanian,IT,Technical Lead,Chennai,Full-Time,2027-03-15,Active
+E140,Rahul Hegde,Procurement,Vendor Manager,Gurugram,Full-Time,2017-05-08,Active
+E141,Shreya Naidu,Administration,Administration Intern,Hyderabad,Intern,2025-07-18,Active
+E142,Aditya Kumar,Operations,Operations Executive,Bengaluru,Contract,2018-10-02,Active
+E143,Piyush Banerjee,IT ,Senior Software Engineer,Noida,Full-Time,2018-09-13,On Leave
+E144,Lokesh Kumar,IT,Data Analyst,Bengaluru,Full-Time,2025-06-15,Active
+E145,Lakshmi Malhotra,Marketing,Marketing Analyst,Bengaluru,Full-Time,2018-04-22,active
+E146,Anjali Patel,Legal,Legal Counsel,Gurugram,Full-Time,2021-01-31,Active
+E147,Yash Menon,Operations,Logistics Coordinator,Hyderabad,Full-Time,1900-01-01,Active
+E148,Anil Subramanian,Operations,Logistics Coordinator,Gurugram,Full-Time,2025-07-27,Active
+E149,  Rohan Gill,Marketing,Digital Marketing Specialist,Chennai,Full-Time,2019-10-28,Active
+E150,Harsh Iyer,Administration,Administrative Assistant,Gurugram,Full-Time,2026-04-08,Active
+E034, Jatin Mehta,administration,Administrative Assistant,Gurugram,Full-Time,2017-01-30,Active

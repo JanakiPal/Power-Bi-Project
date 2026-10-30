@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 606.49350649350652
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 68.6203135807537,
+            "y": 220.32908723145565
+          },
+          "nodeIndex": "Employees",
+          "nodeLineageTag": "6782d8f5-1579-4ddf-ae8d-2dc8efbe9448",
+          "size": {
+            "height": 289.5982904032241,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 968.9572265151221,
+            "y": 222.86003992375592
+          },
+          "nodeIndex": "Facilities",
+          "nodeLineageTag": "cb8a7c69-0ad3-4f06-820b-9572f0551fef",
+          "size": {
+            "height": 293.25274675114758,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 505.6246239236782,
+            "y": 195.04418229900156
+          },
+          "nodeIndex": "FacilityUsage",
+          "nodeLineageTag": "d16595ce-e3fc-4a5a-8a19-e2bf210ead34",
+          "size": {
+            "height": 347.76678823732243,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 504.63070593259465,
+            "y": 580.82000084392223
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "68c90563-d6d6-4fd7-9f85-8494e398b846",
+          "size": {
+            "height": 242.73870526497274,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1467.4537960512514,
+            "y": 920.77848284444065
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "36e1d392-f220-4f4c-9a9a-57a338729022",
+          "size": {
+            "height": 305.2987012987013,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 77,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

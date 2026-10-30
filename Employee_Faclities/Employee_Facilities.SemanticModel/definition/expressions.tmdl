@@ -1,0 +1,11 @@
+expression FacilityUsage_AllRows =
+		let
+		    Source = FacilityUsage
+		in
+		    Source
+	lineageTag: 788ca310-7cb3-4bae-ba26-2bc4b049e37c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

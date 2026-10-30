@@ -1,0 +1,136 @@
+table FacilityUsage
+	lineageTag: d16595ce-e3fc-4a5a-8a19-e2bf210ead34
+
+	column UsageID
+		dataType: string
+		lineageTag: e53e7435-1029-49b1-9fcc-a2a61679430c
+		summarizeBy: none
+		sourceColumn: UsageID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeID
+		dataType: string
+		lineageTag: 67e49f11-ee7c-438c-8c67-b76f1ca7c996
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FacilityID
+		dataType: string
+		lineageTag: f904496c-f1fe-408e-97a4-f41c88661e6d
+		summarizeBy: none
+		sourceColumn: FacilityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f9fe326f-59dd-40ae-b32a-1054f94f62cf
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column UsageFrequency
+		dataType: int64
+		formatString: 0
+		lineageTag: 78325d94-e5be-4b28-9ac0-a59c5afea6e6
+		summarizeBy: sum
+		sourceColumn: UsageFrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostPerUse
+		dataType: double
+		lineageTag: 77fe5f19-4997-45cb-bd55-d28e032b961d
+		summarizeBy: sum
+		sourceColumn: CostPerUse
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PaidBy
+		dataType: string
+		lineageTag: e58417b7-b513-4ad4-af23-88d313c4009c
+		summarizeBy: none
+		sourceColumn: PaidBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeStatus
+		dataType: string
+		lineageTag: 57604026-8665-429a-b017-a0451f41e80b
+		summarizeBy: none
+		sourceColumn: EmployeeStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column JoiningDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 018aad82-7138-496f-a00a-967ebde6caf3
+		summarizeBy: none
+		sourceColumn: JoiningDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FacilityStatus
+		dataType: string
+		lineageTag: 8d42cbd7-d79f-4d32-aaca-65eb18781b81
+		summarizeBy: none
+		sourceColumn: FacilityStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReviewFlag
+		dataType: string
+		lineageTag: 19d50328-2523-4a80-a7c3-b07f0b435472
+		summarizeBy: none
+		sourceColumn: ReviewFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FacilityUsage = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Janaki.Pal\Downloads\FacilityUsage.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"UsageID", type text}, {"EmployeeID", type text}, {"FacilityID", type text}, {"Month", type date}, {"UsageFrequency", Int64.Type}, {"CostPerUse", type number}, {"PaidBy", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(Table.TransformColumnTypes(#"Changed Type", {{"Month", type text}, {"UsageFrequency", type text}, {"CostPerUse", type text}}, "en-IN"),{{"UsageID", Text.Trim, type text}, {"EmployeeID", Text.Trim, type text}, {"FacilityID", Text.Trim, type text}, {"Month", Text.Trim, type text}, {"UsageFrequency", Text.Trim, type text}, {"CostPerUse", Text.Trim, type text}, {"PaidBy", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"UsageID", Text.Clean, type text}, {"EmployeeID", Text.Clean, type text}, {"FacilityID", Text.Clean, type text}, {"Month", Text.Clean, type text}, {"UsageFrequency", Text.Clean, type text}, {"CostPerUse", Text.Clean, type text}, {"PaidBy", Text.Clean, type text}}),
+				    #"Capitalized Each Word" = Table.TransformColumns(#"Cleaned Text",{{"PaidBy", Text.Proper, type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Capitalized Each Word","Emp","Employee",Replacer.ReplaceValue,{"PaidBy"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value",{{"UsageFrequency", Int64.Type}, {"CostPerUse", type number}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Changed Type1", {{"Month", type date}}, "en-IN"),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type with Locale", {{"Month", null}, {"UsageFrequency", null}, {"CostPerUse", null}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Replaced Errors", each ([EmployeeID] <> "")),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each [Month] >= #date(2026, 1, 1) and [Month] <= #date(2026, 12, 31)),
+				    #"Filtered Rows2" = Table.SelectRows(#"Filtered Rows1", each [UsageFrequency] > 0),
+				    #"Filtered Rows3" = Table.SelectRows(#"Filtered Rows2", each [CostPerUse] > 0),
+				    #"Calculated Start of Month" = Table.TransformColumns(#"Filtered Rows3",{{"Month", Date.StartOfMonth, type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Calculated Start of Month", {"EmployeeID"}, Employees, {"EmployeeID"}, "Employees", JoinKind.Inner),
+				    #"Removed Columns" = Table.RemoveColumns(#"Merged Queries",{"Employees"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Removed Columns", {"FacilityID"}, Facilities, {"FacilityID"}, "Facilities", JoinKind.Inner),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Merged Queries1",{"Facilities"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns1", {"EmployeeID", "FacilityID", "Month"}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Removed Duplicates", {"EmployeeID"}, Employees, {"EmployeeID"}, "Employees", JoinKind.LeftOuter),
+				    #"Expanded Employees" = Table.ExpandTableColumn(#"Merged Queries2", "Employees", {"EmployeeStatus", "JoiningDate"}, {"EmployeeStatus", "JoiningDate"}),
+				    #"Merged Queries3" = Table.NestedJoin(#"Expanded Employees", {"FacilityID"}, Facilities, {"FacilityID"}, "Facilities", JoinKind.LeftOuter),
+				    #"Expanded Facilities" = Table.ExpandTableColumn(#"Merged Queries3", "Facilities", {"FacilityStatus"}, {"FacilityStatus"}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Expanded Facilities", "ReviewFlag", each if [EmployeeStatus] = "Inactive" then "Inactive employee" else if [FacilityStatus] = "Inactive" then "Inactive facility" else if [UsageFrequency] > 31 then "High frequency" else if [CostPerUse] > 1000 then "High cost" else null)
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

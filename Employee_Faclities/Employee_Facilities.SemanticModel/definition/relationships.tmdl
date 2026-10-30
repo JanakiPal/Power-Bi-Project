@@ -1,0 +1,14 @@
+relationship 3e904add-44a0-49f7-a9e9-9c90e9757f65
+	fromColumn: FacilityUsage.EmployeeID
+	toColumn: Employees.EmployeeID
+
+	annotation PBI_IsFromSource = FS
+
+relationship d8c8942c-80a2-311e-0400-16620b995c45
+	fromColumn: FacilityUsage.Month
+	toColumn: Calendar.Date
+
+relationship e129f313-0cf8-a4bd-45a4-f4776e0dc1fd
+	fromColumn: FacilityUsage.FacilityID
+	toColumn: Facilities.FacilityID
+

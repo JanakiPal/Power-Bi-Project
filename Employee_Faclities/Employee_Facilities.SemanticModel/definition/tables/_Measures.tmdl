@@ -1,0 +1,148 @@
+table _Measures
+	lineageTag: 36e1d392-f220-4f4c-9a9a-57a338729022
+
+	measure 'Total Uses' = SUM(FacilityUsage[UsageFrequency])
+		formatString: 0
+		lineageTag: 690aeb8e-969e-43ce-84f1-bb922469483f
+
+	measure 'Usage Cost' = SUMX(FacilityUsage, FacilityUsage[UsageFrequency] * FacilityUsage[CostPerUse])
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: 6647c038-4950-46ce-a5bb-29b2437cd460
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Company-Paid Usage Cost' = CALCULATE([Usage Cost], FacilityUsage[PaidBy] = "Company")
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: 1583b3bb-7f03-4ead-aa17-d808e7de6c6d
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Employee-Paid Usage Cost' = CALCULATE([Usage Cost], FacilityUsage[PaidBy] = "Employee")
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: 51db5b7e-e2a2-4a1c-a512-f7251cc417f9
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Active Users' = DISTINCTCOUNT(FacilityUsage[EmployeeID])
+		formatString: 0
+		lineageTag: 443b640e-84d9-433f-9d0c-8bb2f613f3de
+
+	measure 'Avg Uses per User' = DIVIDE([Total Uses], [Active Users])
+		lineageTag: 8f7aa8d2-65ad-4f84-8ae5-0cd6050691a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Months in Period' = CALCULATE(COUNTROWS('Calendar'), Calendar[Is Month Start] = TRUE())
+		formatString: 0
+		lineageTag: cd316d35-9d03-4909-b21a-a0f7bfcb7006
+
+	measure 'Total Operating Cost' = SUMX(Facilities, Facilities[MonthlyOperatingCost]) * [Months in Period]
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: c7b838f3-8d88-453f-9499-78e6fafeeae0
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Total Company Spend' = [Total Operating Cost] + [Company-Paid Usage Cost]
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: fa7ac680-d6ba-4b41-a1ac-d1a0aaa6a828
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Comparable Budget' = ```
+			
+			
+			  VAR Complete = FILTER(Facilities, NOT ISBLANK(Facilities[MonthlyOperatingCost]) && NOT ISBLANK(Facilities[MonthlyBudget]))
+			
+			  RETURN SUMX(Complete, Facilities[MonthlyBudget]) * [Months in Period]
+			```
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: 09697504-e7c6-4f41-82ec-60f7bafd8fae
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Comparable Spend' = ```
+			
+			
+			  VAR Complete = FILTER(Facilities, NOT ISBLANK(Facilities[MonthlyOperatingCost]) && NOT ISBLANK(Facilities[MonthlyBudget]))
+			
+			  RETURN SUMX(Complete, Facilities[MonthlyOperatingCost]) * [Months in Period] + CALCULATE([Company-Paid Usage Cost], Complete)
+			```
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: 7c030ff9-8803-4b5d-9ef1-5a8709d3c980
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Budget Variance' = IF([Comparable Budget] = 0, BLANK(), [Comparable Budget] - [Comparable Spend])
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: 8123ac1f-baf5-4860-901d-2de050491fd2
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Budget Utilization %' = DIVIDE([Comparable Spend], [Comparable Budget])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8dfd581c-cd5b-442e-8217-32b8443d3690
+
+	measure 'Budget Status' =
+			VAR U = [Budget Utilization %]
+			  RETURN IF(ISBLANK(U), "Data missing", IF(U > 1, "Over budget", IF(U >= 0.95, "Near budget", "Within budget")))
+		lineageTag: 439617db-1a18-4c7b-a4cc-f4ebdd983371
+
+	measure 'Flagged Rows' = CALCULATE(COUNTROWS(FacilityUsage), FacilityUsage[ReviewFlag] <> BLANK())
+		lineageTag: 37597673-161e-487c-9c22-b8fc4ef3b2ec
+
+	measure 'Total Budget' = SUMX(Facilities, Facilities[MonthlyBudget]) * [Months in Period]
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: ae36029e-35bf-4657-93e4-5d38a4b05699
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Company-Paid Share %' = DIVIDE([Company-Paid Usage Cost], [Usage Cost])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: b4382de3-34af-425b-8e08-f0e581c3a05f
+
+	measure 'Avg Cost per Use' = DIVIDE([Usage Cost], [Total Uses])
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: 8d8af7dd-73b8-47fd-92f8-4b572bf215da
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Usage Cost Prev Month' = CALCULATE([Usage Cost], DATEADD(Calendar[Date], -1, MONTH))
+		formatString: "₹"#,0.00;-"₹"#,0.00;"₹"#,0.00
+		lineageTag: 82ec337e-ee1f-4bfe-b2e8-556a97af5710
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-Latn-IN"}
+
+	measure 'Usage Cost MoM %' = IF(HASONEVALUE(Calendar[Month Number]), DIVIDE([Usage Cost] - [Usage Cost Prev Month], [Usage Cost Prev Month]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: de6eac84-157b-4103-a27a-a6d65f2ae1ad
+
+	measure 'Months Over Budget' = COUNTROWS(FILTER(VALUES(Calendar[Month Number]), CALCULATE([Budget Utilization %]) > 1))
+		formatString: 0
+		lineageTag: 7a0cae74-fecd-45d7-9a82-2c6b05801233
+
+	measure 'Usage Records' = COUNT(FacilityUsage[UsageID])
+		formatString: 0
+		lineageTag: 1c37ffc9-2de3-4dd9-9cc1-5294c2ad4565
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: cd9934b7-e893-4a0c-8751-8c448f0201df
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

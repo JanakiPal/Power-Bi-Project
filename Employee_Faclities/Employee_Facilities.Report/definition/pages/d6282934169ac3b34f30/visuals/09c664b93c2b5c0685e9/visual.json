@@ -1,0 +1,240 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "09c664b93c2b5c0685e9",
+  "position": {
+    "x": 564.5,
+    "y": 329,
+    "z": 2000,
+    "height": 570,
+    "width": 668,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FacilityUsage"
+                    }
+                  },
+                  "Property": "UsageID"
+                }
+              },
+              "queryRef": "FacilityUsage.UsageID",
+              "nativeQueryRef": "UsageID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FacilityUsage"
+                    }
+                  },
+                  "Property": "EmployeeID"
+                }
+              },
+              "queryRef": "FacilityUsage.EmployeeID",
+              "nativeQueryRef": "EmployeeID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FacilityUsage"
+                    }
+                  },
+                  "Property": "FacilityID"
+                }
+              },
+              "queryRef": "FacilityUsage.FacilityID",
+              "nativeQueryRef": "FacilityID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FacilityUsage"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "FacilityUsage.Month",
+              "nativeQueryRef": "Month"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FacilityUsage"
+                        }
+                      },
+                      "Property": "CostPerUse"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FacilityUsage.CostPerUse)",
+              "nativeQueryRef": "Sum of CostPerUse"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FacilityUsage"
+                    }
+                  },
+                  "Property": "ReviewFlag"
+                }
+              },
+              "queryRef": "FacilityUsage.ReviewFlag",
+              "nativeQueryRef": "ReviewFlag"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 9,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Flagged for review'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "549a6e81d85bc27c7f49",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FacilityUsage"
+              }
+            },
+            "Property": "ReviewFlag"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "FacilityUsage",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "ReviewFlag"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'High cost'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'High frequency'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Inactive employee'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Inactive facility'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
